@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour {
             destinationIndex++;
             if (destinationIndex >= indicators.transform.childCount) {
                 Destroy(gameObject);
+                manager.BaseTakeDamage(1);
                 return;
             }
         }

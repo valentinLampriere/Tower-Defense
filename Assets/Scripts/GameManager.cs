@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public int amountEnemies = 5;
     public GameObject enemy;
-    private int totalGold = 0;
+    public int totalGold = 0;
+    public int baseHP = 20;
 
     private Transform firstIndicator;
     private GameObject enemies;
@@ -35,9 +36,13 @@ public class GameManager : MonoBehaviour
             StartCoroutine(DelayEnemies());
     }
 
-    public int GetGold() {
-        return totalGold;
+    public void BaseTakeDamage(int amountDamage) {
+        baseHP -= amountDamage;
+        if (baseHP <= 0) {
+            Debug.Break();
+        }
     }
+
     public void UpdateGold(int goldAdd) {
         totalGold += goldAdd;
         goldText.text = totalGold.ToString();
