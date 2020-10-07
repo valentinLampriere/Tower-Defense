@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class FlameThrower : MonoBehaviour
 {
     public float damage = 2.5f;
     public float fireRate = 1f;
@@ -12,19 +12,13 @@ public class Tower : MonoBehaviour
 
     void Start() {
         enemies = GameObject.Find("Enemies");
-        StartCoroutine(Fire());
     }
 
-    IEnumerator Fire() {
+    private void FixedUpdate() {
         Enemy e = GetFirstEnemy();
         if (e != null) {
-            Debug.Log("Piou !");
-            Color c = e.gameObject.GetComponent<Renderer>().material.color;
-            e.gameObject.GetComponent<Renderer>().material.color = new Color(c.r * e.GetHpPercentage(), c.g * e.GetHpPercentage(), c.b * e.GetHpPercentage());
-            e.TakeDamage(damage);
+            
         }
-        yield return new WaitForSeconds(fireRate);
-        StartCoroutine(Fire());
     }
 
     private Enemy GetFirstEnemy() {

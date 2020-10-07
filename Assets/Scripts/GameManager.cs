@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         if(firstIndicator != null && enemies != null)
             StartCoroutine(DelayEnemies());
         goldText = GameObject.Find("GoldValue").GetComponent<Text>();
+        goldText.text = totalGold.ToString();
     }
 
     IEnumerator DelayEnemies() {

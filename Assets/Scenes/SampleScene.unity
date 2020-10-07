@@ -7213,7 +7213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amountEnemies: 15
   enemy: {fileID: 7971911192380826091, guid: 7c1e31c8006b094439fbafc95d157d0e, type: 3}
-  totalGold: 0
+  totalGold: 20
   baseHP: 2
 --- !u!4 &805471124
 Transform:
