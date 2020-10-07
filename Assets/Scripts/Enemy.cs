@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    //public GameObject indicators;
-    GameObject indicators;
     public float speed = 5f;
     public float hp = 10;
+    public int lootedGold = 10;
 
     List<Transform> destinations;
-    [HideInInspector]
-    public int destinationIndex = 0;
+    GameObject indicators;
+    GameManager manager;
+
+    private int destinationIndex = 0;
+    private float maxHP;
 
     void Start() {
         indicators = GameObject.Find("Indicators");
@@ -18,6 +20,10 @@ public class Enemy : MonoBehaviour {
         for (int i = 0; i < indicators.transform.childCount; i++) {
             destinations.Add(indicators.transform.GetChild(i));
         }
+        maxHP = hp;
+    }
+    public void Init(GameManager manager) {
+        this.manager = manager;
     }
 
     void Update() {
@@ -39,7 +45,16 @@ public class Enemy : MonoBehaviour {
     public void TakeDamage(float amountDamage) {
         hp -= amountDamage;
         if(hp <= 0) {
+            manager.UpdateGold(lootedGold);
             Destroy(gameObject);
         }
+    }
+
+    public int GetDestinationIndex() {
+        return destinationIndex;
+    }
+
+    public float GetHpPercentage() {
+        return (hp / maxHP);
     }
 }

@@ -19,7 +19,8 @@ public class Tower : MonoBehaviour
         Enemy e = GetFirstEnemy();
         if (e != null) {
             Debug.Log("Piou !");
-            e.gameObject.GetComponent<Renderer>().material.color = new Color(Random.Range(0F, 1F), Random.Range(0, 1F), Random.Range(0, 1F));
+            Color c = e.gameObject.GetComponent<Renderer>().material.color;
+            e.gameObject.GetComponent<Renderer>().material.color = new Color(c.r * e.GetHpPercentage(), c.g * e.GetHpPercentage(), c.b * e.GetHpPercentage());
             e.TakeDamage(damage);
         }
         yield return new WaitForSeconds(fireRate);
@@ -31,16 +32,13 @@ public class Tower : MonoBehaviour
 
         if (enemies.transform.childCount == 0)
             return null;
-
-        //firstEnemy = enemies.transform.GetChild(0).gameObject.GetComponent<Enemy>();
-
         for (int i = 0; i < enemies.transform.childCount; i++) {
             if (Vector3.Distance(enemies.transform.GetChild(i).position, transform.position) <= range) {
                 Enemy e = enemies.transform.GetChild(i).gameObject.GetComponent<Enemy>();
                 if (e != null) {
                     if(firstEnemy == null) {
                         firstEnemy = e;
-                    } else if (e.destinationIndex >= firstEnemy.destinationIndex) {
+                    } else if (e.GetDestinationIndex() >= firstEnemy.GetDestinationIndex()) {
                         if (e.GetDistanceNextDestination() < firstEnemy.GetDistanceNextDestination()) {
                             firstEnemy = e;
                         }
