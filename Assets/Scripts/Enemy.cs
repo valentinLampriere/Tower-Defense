@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour {
     //public GameObject indicators;
     GameObject indicators;
     public float speed = 5f;
+    public float hp = 10;
 
     List<Transform> destinations;
     [HideInInspector]
@@ -32,7 +33,13 @@ public class Enemy : MonoBehaviour {
     }
 
     public float GetDistanceNextDestination() {
-        Debug.Log(destinations);
         return Vector3.Distance(destinations[destinationIndex].position, transform.position);
+    }
+
+    public void TakeDamage(float amountDamage) {
+        hp -= amountDamage;
+        if(hp <= 0) {
+            Destroy(gameObject);
+        }
     }
 }

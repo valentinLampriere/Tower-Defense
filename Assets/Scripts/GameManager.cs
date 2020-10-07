@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DelayEnemies() {
         Vector3 pos = firstIndicator.position;
-        Instantiate(enemy, pos, Quaternion.identity, enemies.transform);
+        GameObject g = Instantiate(enemy, pos, Quaternion.identity, enemies.transform);
+        g.name = "enemy" + enemies.transform.childCount;
         enemiesSpawned++;
         yield return new WaitForSeconds(0.5f);
         if (enemiesSpawned < amountEnemies)
