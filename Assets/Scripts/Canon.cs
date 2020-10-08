@@ -10,10 +10,10 @@ public class Canon : Tower {
     }
     
     protected IEnumerator Fire() {
-
         Enemy e = GetFirstEnemy();
         if (e != null)
             e.TakeDamage(damage);
+        
 
         yield return new WaitForSeconds(fireRate);
         StartCoroutine(Fire());

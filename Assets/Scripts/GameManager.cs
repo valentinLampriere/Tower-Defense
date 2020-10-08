@@ -12,8 +12,15 @@ public class GameManager : MonoBehaviour
     [Min(1)]
     public int baseHP = 20;
 
+    public Canon canon;
+    public FlameThrower flameThrower;
+    public Slower slower;
+
     private Transform firstIndicator;
     private GameObject enemies;
+    private GameObject towers;
+
+    private Tower choosenTower;
 
     private int enemiesSpawned = 0;
 
@@ -23,7 +30,8 @@ public class GameManager : MonoBehaviour
     void Start() {
         firstIndicator = GameObject.Find("Indicators").transform.GetChild(0);
         enemies = GameObject.Find("Enemies");
-        if(firstIndicator != null && enemies != null)
+        towers = GameObject.Find("Towers");
+        if (firstIndicator != null && enemies != null)
             StartCoroutine(DelayEnemies());
         goldText = GameObject.Find("GoldValue").GetComponent<Text>();
         goldText.text = totalGold.ToString();
@@ -47,8 +55,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Update() {
+        if (choosenTower != null && Input.GetMouseButtonUp(0)) {
+            Debug.Log(choosenTower);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Instantiate(choosenTower, new Vector3(mousePos.x, mousePos.y, 0), Quaternion.identity, towers.transform);
+        }
+    }
+
     public void UpdateGold(int goldAdd) {
         totalGold += goldAdd;
         goldText.text = totalGold.ToString();
+    }
+
+    public void AddCanon() {
+        choosenTower = canon;
+    }
+    public void AddFlameThrower() {
+        choosenTower = flameThrower;
+    }
+    public void AddSlower() {
+        choosenTower = slower;
     }
 }
