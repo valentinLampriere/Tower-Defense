@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FlameThrower : Tower {
 
     public float impactRange = 0.5f;
 
-    protected override void Fire() {
+    private void FixedUpdate() {
         Enemy targetEnemy = GetFirstEnemy();
         if (targetEnemy != null)
             for (int i = 0; i < enemies.transform.childCount; i++) {

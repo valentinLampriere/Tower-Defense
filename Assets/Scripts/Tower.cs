@@ -1,26 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
     public float damage = 2.5f;
-    public float fireRate = 1f;
     public float range = 3f;
 
     protected GameObject enemies;
 
-    void Start() {
+    protected virtual void Start() {
+        Debug.Log("Tower");
         enemies = GameObject.Find("Enemies");
-        StartCoroutine(TowerLoop());
-    }
-
-    protected abstract void Fire();
-
-    protected IEnumerator TowerLoop() {
-        Fire();
-        yield return new WaitForSeconds(fireRate);
-        StartCoroutine(TowerLoop());
     }
 
     protected Enemy GetFirstEnemy() {

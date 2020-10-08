@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour {
     public int lootedGold = 10;
     public float damagePerSeconds = 1;
 
+    [HideInInspector]
+    public bool isSlowed = false;
+
     List<Transform> destinations;
     GameObject indicators;
     GameManager manager;
@@ -30,7 +33,6 @@ public class Enemy : MonoBehaviour {
     }
 
     protected IEnumerator AttackBase() {
-        Debug.Log("AttackBase()");
         manager.BaseTakeDamage(1);
         yield return new WaitForSeconds(1 / damagePerSeconds);
         StartCoroutine(AttackBase());
