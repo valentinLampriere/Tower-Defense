@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Canon : Tower {
+public class Slower : Tower {
     protected override void Fire() {
         Enemy e = GetFirstEnemy();
         if(e != null)

@@ -4,9 +4,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [Min(0)]
     public int amountEnemies = 5;
     public GameObject enemy;
+    [Min(0)]
     public int totalGold = 0;
+    [Min(1)]
     public int baseHP = 20;
 
     private Transform firstIndicator;
