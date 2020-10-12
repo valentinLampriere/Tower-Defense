@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private int enemiesSpawned = 0;
 
     private Text goldText;
+    private Text healthText;
 
     // Start is called before the first frame update
     void Start() {
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
             StartCoroutine(DelayEnemies());
         goldText = GameObject.Find("GoldValue").GetComponent<Text>();
         goldText.text = totalGold.ToString();
+        healthText = GameObject.Find("HealthValue").GetComponent<Text>();
+        healthText.text = baseHP.ToString();
     }
 
     IEnumerator DelayEnemies() {
@@ -50,16 +53,28 @@ public class GameManager : MonoBehaviour
 
     public void BaseTakeDamage(int amountDamage) {
         baseHP -= amountDamage;
+        healthText.text = baseHP.ToString();
         if (baseHP <= 0) {
             Debug.Break();
         }
     }
 
     void Update() {
-        if (choosenTower != null && Input.GetMouseButtonUp(0)) {
-            Debug.Log(choosenTower);
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Instantiate(choosenTower, new Vector3(mousePos.x, mousePos.y, 0), Quaternion.identity, towers.transform);
+        if (choosenTower != null && Input.GetMouseButtonDown(0)) {
+            //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100)) {
+                if(hit.transform.parent.name == "Board") {
+                    Vector3 towerPos = new Vector3(hit.transform.position.x, towers.transform.position.y, hit.transform.position.z);
+                    Instantiate(choosenTower, towerPos, Quaternion.identity, towers.transform);
+                    UpdateGold(-choosenTower.GetCost());
+                }
+            }
+            choosenTower = null;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            choosenTower = null;
         }
     }
 
@@ -67,7 +82,6 @@ public class GameManager : MonoBehaviour
         totalGold += goldAdd;
         goldText.text = totalGold.ToString();
     }
-
     public void AddCanon() {
         choosenTower = canon;
     }

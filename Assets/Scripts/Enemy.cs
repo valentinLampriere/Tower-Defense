@@ -54,6 +54,9 @@ public class Enemy : MonoBehaviour {
     }
 
     public float GetDistanceNextDestination() {
+        if (reachBase) {
+            return 0;
+        }
         return Vector3.Distance(destinations[destinationIndex].position, transform.position);
     }
 

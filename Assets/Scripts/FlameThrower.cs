@@ -3,6 +3,7 @@
 public class FlameThrower : Tower {
 
     public float impactRange = 0.5f;
+    public int cost = 25;
 
     private void FixedUpdate() {
         Enemy targetEnemy = GetFirstEnemy();
@@ -15,5 +16,9 @@ public class FlameThrower : Tower {
                     }
                 }
             }
+    }
+
+    public override int GetCost() {
+        return cost;
     }
 }

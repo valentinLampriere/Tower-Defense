@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Canon : Tower {
     public float fireRate = 1f;
+    public int cost = 20;
 
     protected override void Start() {
         base.Start();
@@ -17,5 +18,9 @@ public class Canon : Tower {
 
         yield return new WaitForSeconds(fireRate);
         StartCoroutine(Fire());
+    }
+
+    public override int GetCost() {
+        return cost;
     }
 }

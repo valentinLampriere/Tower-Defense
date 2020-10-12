@@ -3,9 +3,11 @@
 public class Slower : Tower {
     [Min(0)]
     public float speedMultiplicateur = 0.5f;
+    public int cost = 15;
+
+    public int towerCost = 15;
+
     private void FixedUpdate() {
-        if (!isActive)
-            return;
         for (int i = 0; i < enemies.transform.childCount; i++) {
             Enemy e = enemies.transform.GetChild(i).gameObject.GetComponent<Enemy>();
             if (Vector3.Distance(enemies.transform.GetChild(i).position, transform.position) <= range) {
@@ -20,5 +22,10 @@ public class Slower : Tower {
                 }
             }
         }
+    }
+
+
+    public override int GetCost() {
+        return cost;
     }
 }
