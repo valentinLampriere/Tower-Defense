@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,49 +7,35 @@ public class GameManager : MonoBehaviour
 {
     [Min(0)]
     public int amountEnemies = 5;
-    public GameObject enemy;
     [Min(0)]
     public int totalGold = 0;
     [Min(1)]
     public int baseHP = 20;
 
+    public List<Wave> waves;
+
     public Canon canon;
     public FlameThrower flameThrower;
     public Slower slower;
 
-    private Transform firstIndicator;
-    private GameObject enemies;
     private GameObject towers;
 
     private Tower choosenTower;
-
-    private int enemiesSpawned = 0;
 
     private Text goldText;
     private Text healthText;
 
     // Start is called before the first frame update
     void Start() {
-        firstIndicator = GameObject.Find("Indicators").transform.GetChild(0);
-        enemies = GameObject.Find("Enemies");
         towers = GameObject.Find("Towers");
-        if (firstIndicator != null && enemies != null)
-            StartCoroutine(DelayEnemies());
         goldText = GameObject.Find("GoldValue").GetComponent<Text>();
         goldText.text = totalGold.ToString();
         healthText = GameObject.Find("HealthValue").GetComponent<Text>();
         healthText.text = baseHP.ToString();
-    }
 
-    IEnumerator DelayEnemies() {
-        Vector3 pos = firstIndicator.position;
-        GameObject g = Instantiate(enemy, pos, Quaternion.identity, enemies.transform);
-        g.GetComponent<Enemy>().Init(this);
-        g.name = "enemy" + enemies.transform.childCount;
-        enemiesSpawned++;
-        yield return new WaitForSeconds(0.5f);
-        if (enemiesSpawned < amountEnemies)
-            StartCoroutine(DelayEnemies());
+        foreach (Wave w in waves) {
+            Instantiate(w, GameObject.Find("Waves").transform);
+        }
     }
 
     public void BaseTakeDamage(int amountDamage) {

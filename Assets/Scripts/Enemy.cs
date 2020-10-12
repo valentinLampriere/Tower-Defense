@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
@@ -14,22 +15,21 @@ public class Enemy : MonoBehaviour {
 
     List<Transform> destinations;
     GameObject indicators;
-    GameManager manager;
 
     private int destinationIndex = 0;
     private float maxHP;
     private bool reachBase = false;
 
+    private GameManager manager;
+
     void Start() {
+        manager = GameObject.Find("Board").GetComponent<GameManager>();
         indicators = GameObject.Find("Indicators");
         destinations = new List<Transform>();
         for (int i = 0; i < indicators.transform.childCount; i++) {
             destinations.Add(indicators.transform.GetChild(i));
         }
         maxHP = hp;
-    }
-    public void Init(GameManager manager) {
-        this.manager = manager;
     }
 
     protected IEnumerator AttackBase() {

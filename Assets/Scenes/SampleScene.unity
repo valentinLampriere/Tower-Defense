@@ -7465,9 +7465,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountEnemies: 20
-  enemy: {fileID: 7971911192380826091, guid: 7c1e31c8006b094439fbafc95d157d0e, type: 3}
   totalGold: 20
   baseHP: 50
+  waves:
+  - {fileID: -4855850586619336902, guid: 88235fce07ba570489485c413b480939, type: 3}
+  - {fileID: -4855850586619336902, guid: 183a3f2a71a3cfc4b94c8e9e12d81db2, type: 3}
   canon: {fileID: 8724166572649606531, guid: f3d52f6d0252cea4eb92d8f9bc40dc2e, type: 3}
   flameThrower: {fileID: 906157892012099341, guid: e001d43c87d5c364dbee99f182f84c70,
     type: 3}
@@ -9147,6 +9149,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924169457}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &952732703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952732704}
+  m_Layer: 0
+  m_Name: Waves
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &952732704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952732703}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 523.71875, y: 382.40625, z: 28.1875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &957363903
 GameObject:
   m_ObjectHideFlags: 0
