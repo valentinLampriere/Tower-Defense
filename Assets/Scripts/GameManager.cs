@@ -61,6 +61,10 @@ public class GameManager : MonoBehaviour
 
     void Update() {
         if (choosenTower != null && Input.GetMouseButtonDown(0)) {
+            if (totalGold - choosenTower.GetCost() < 0) {
+                choosenTower = null;
+                return;
+            }
             //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
