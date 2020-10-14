@@ -13,15 +13,18 @@ public class FlameThrower : Tower {
 
     private void FixedUpdate() {
         Enemy targetEnemy = GetFirstEnemy();
-        if (targetEnemy != null)
+        if (targetEnemy != null) {
+            Debug.DrawRay(transform.position, targetEnemy.transform.position - transform.position, new Color(1, 0.5f, 0), Time.fixedDeltaTime);
             for (int i = 0; i < enemies.transform.childCount; i++) {
                 if (Vector3.Distance(enemies.transform.GetChild(i).position, targetEnemy.transform.position) <= impactRange) {
                     Enemy e = enemies.transform.GetChild(i).gameObject.GetComponent<Enemy>();
                     if (e != null) {
+                        Debug.DrawRay(targetEnemy.transform.position, e.transform.position - targetEnemy.transform.position, new Color(1, 0.5f, 0), Time.fixedDeltaTime);
                         e.TakeDamage(damage);
                     }
                 }
             }
+        }
     }
 
     public override void Upgrade() {
