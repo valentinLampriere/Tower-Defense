@@ -35,7 +35,9 @@ public abstract class Tower : MonoBehaviour
         return firstEnemy;
     }
 
-    public abstract void Upgrade();
+    public virtual void Upgrade() {
+        transform.localScale = new Vector3(transform.localScale.x * 1.3f, transform.localScale.y * 1.3f, transform.localScale.z * 1.3f);
+    }
     public abstract int GetUpgradeCost();
     public abstract int GetCost();
 

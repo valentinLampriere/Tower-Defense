@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public int baseHP = 20;
 
     public List<Wave> waves;
+    [HideInInspector]
+    public int waveIndex = -1;
 
     public Canon canon;
     public FlameThrower flameThrower;
@@ -31,10 +33,13 @@ public class GameManager : MonoBehaviour
         healthText = GameObject.Find("HealthValue").GetComponent<Text>();
         healthText.text = baseHP.ToString();
 
-        //foreach (Wave w in waves) {
-        Wave w = Instantiate(waves[0], GameObject.Find("Waves").transform).GetComponent<Wave>();
-        w.Init(this, 0);
-        //}
+        NextWave();
+    }
+
+    public void NextWave() {
+        Wave w = Instantiate(waves[waveIndex], GameObject.Find("Waves").transform).GetComponent<Wave>();
+        w.Init(this);
+        waveIndex++;
     }
 
     public void BaseTakeDamage(int amountDamage) {

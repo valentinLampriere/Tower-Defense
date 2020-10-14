@@ -14,11 +14,9 @@ public class Wave : MonoBehaviour {
     private int enemyIndex = 0;
 
     private GameManager manager;
-    private int indexWave;
 
-    public void Init(GameManager gm, int iWave) {
+    public void Init(GameManager gm) {
         manager = gm;
-        indexWave = iWave;
         firstIndicator = GameObject.Find("Indicators").transform.GetChild(0);
         enemiesParent = GameObject.Find("Enemies");
         if (firstIndicator != null && enemiesParent != null)
@@ -39,9 +37,8 @@ public class Wave : MonoBehaviour {
             yield return new WaitForSeconds(intervalBetweenEnemies);
             StartCoroutine(SetIntervalEnemies());
         } else {
-            if (indexWave + 1 < manager.waves.Count) {
-                Wave w = Instantiate(manager.waves[indexWave + 1], GameObject.Find("Waves").transform).GetComponent<Wave>();
-                w.Init(manager, indexWave + 1);
+            if (manager.waveIndex < manager.waves.Count) {
+                manager.NextWave();
             }
         }
     }

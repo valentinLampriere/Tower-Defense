@@ -25,6 +25,7 @@ public class FlameThrower : Tower {
     }
 
     public override void Upgrade() {
+        base.Upgrade();
         if (CanUpgrade()) {
             impactRange *= (float)impactRangeUpgrade / 100;
             damage *= (float)damageUpgrade / 100;
