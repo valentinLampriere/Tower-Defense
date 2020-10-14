@@ -17,7 +17,6 @@ public class Slower : Tower {
         for (int i = 0; i < enemies.transform.childCount; i++) {
             Enemy e = enemies.transform.GetChild(i).gameObject.GetComponent<Enemy>();
             if (Vector3.Distance(enemies.transform.GetChild(i).position, transform.position) <= range) {
-                Debug.DrawRay(transform.position, e.transform.position - transform.position, new Color(0, 0.5f, 1f), Time.fixedDeltaTime);
                 if (e != null && !e.isSlowed) {
                     e.isSlowed = true;
                     e.speed *= speedMultiplicateur;

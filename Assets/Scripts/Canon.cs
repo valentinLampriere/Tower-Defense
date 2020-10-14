@@ -19,10 +19,10 @@ public class Canon : Tower
     
     protected IEnumerator Fire() {
         Enemy e = GetFirstEnemy();
-        if (e != null) {
+        if (e != null)
             e.TakeDamage(damage);
-            Debug.DrawRay(transform.position, e.transform.position - transform.position, Color.yellow, 0.08f);
-        }
+        
+
         yield return new WaitForSeconds(fireRate);
         StartCoroutine(Fire());
     }
