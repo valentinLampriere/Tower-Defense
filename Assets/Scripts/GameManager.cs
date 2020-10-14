@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public List<Wave> waves;
     [HideInInspector]
-    public int waveIndex = -1;
+    public int waveIndex;
 
     public Canon canon;
     public FlameThrower flameThrower;
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        waveIndex = 0;
         towers = GameObject.Find("Towers");
         goldText = GameObject.Find("GoldValue").GetComponent<Text>();
         goldText.text = totalGold.ToString();
@@ -69,11 +70,13 @@ public class GameManager : MonoBehaviour
                 }
                 if (hit.transform.parent.name == "Towers") {
                     Tower tower = hit.transform.gameObject.GetComponent<Tower>();
-                    if (tower != null) {
+                    
+                    if (tower != null && tower.CanUpgrade()) {
                         if (totalGold - tower.GetUpgradeCost() < 0) {
                             return;
                         }
                         tower.Upgrade();
+                        UpdateGold(-tower.GetUpgradeCost());
                     }
                 }
             }

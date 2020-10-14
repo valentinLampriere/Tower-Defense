@@ -29,12 +29,9 @@ public class Canon : Tower
 
     public override void Upgrade() {
         base.Upgrade();
-        if (CanUpgrade()) {
-            fireRate *= (float)fireRateUpgrade / 100;
-            damage *= (float)damageUpgrade / 100;
-            range *= (float)rangeUpgrade / 100;
-            currentLevel++;
-        }
+        fireRate *= (float)fireRateUpgrade / 100;
+        damage *= (float)damageUpgrade / 100;
+        range *= (float)rangeUpgrade / 100;
     }
 
     public override int GetCost() {

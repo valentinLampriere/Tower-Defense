@@ -32,11 +32,8 @@ public class Slower : Tower {
 
     public override void Upgrade() {
         base.Upgrade();
-        if (CanUpgrade()) {
-            speedMultiplicateur *= (float)speedMultiplicateurUpgrade / 100;
-            range *= (float)rangeUpgrade / 100;
-            currentLevel++;
-        }
+        speedMultiplicateur *= (float)speedMultiplicateurUpgrade / 100;
+        range *= (float)rangeUpgrade / 100;
     }
 
     public override int GetCost() {

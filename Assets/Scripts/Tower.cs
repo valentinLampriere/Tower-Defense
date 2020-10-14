@@ -11,6 +11,8 @@ public abstract class Tower : MonoBehaviour
 
     protected GameObject enemies;
 
+    protected GameManager manager;
+
     protected virtual void Start() {
         enemies = GameObject.Find("Enemies");
     }
@@ -37,6 +39,7 @@ public abstract class Tower : MonoBehaviour
 
     public virtual void Upgrade() {
         transform.localScale = new Vector3(transform.localScale.x * 1.3f, transform.localScale.y * 1.3f, transform.localScale.z * 1.3f);
+        currentLevel++;
     }
     public abstract int GetUpgradeCost();
     public abstract int GetCost();
