@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7971911192380826089}
   - component: {fileID: 7971911192380826092}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,6 +108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   hp: 8
-  lootedGold: 10
+  lootedGold: 2
   damagePerSeconds: 1
   isSlowed: 0

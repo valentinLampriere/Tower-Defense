@@ -112,7 +112,7 @@ MonoBehaviour:
   maxLevel: 2
   fireRate: 0.3
   cost: 20
-  upgradeCost: 10
+  upgradeCost: 20
   fireRateUpgrade: 90
   damageUpgrade: 200
   rangeUpgrade: 100

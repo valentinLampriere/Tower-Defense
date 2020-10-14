@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8fb75f0af13c23b40b9449e88a6b7bf9, type: 2}
+  - {fileID: 2100000, guid: a08cac16364fd3d4b9e856b3205c878b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f447af0b3332ba43a6b616a626eb3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3.5
   hp: 30
-  lootedGold: 20
+  lootedGold: 10
   damagePerSeconds: 2
   isSlowed: 0

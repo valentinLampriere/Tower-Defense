@@ -108,4 +108,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   range: 3
-  speedMultiplicateur: 0.2
+  maxLevel: 2
+  speedMultiplicateur: 0.7
+  cost: 25
+  upgradeCost: 15
+  speedMultiplicateurUpgrade: 100
+  rangeUpgrade: 100
+  towerCost: 15
