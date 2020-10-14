@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 
 public class Slower : Tower {
+
     [Min(0)]
     public float speedMultiplicateur = 0.5f;
     public int cost = 15;
+
+    [Header("Upgrades")]
+    public int upgradeCost = 15;
+    public int speedMultiplicateurUpgrade = 100;
+    public int rangeUpgrade = 100;
 
     public int towerCost = 15;
 
@@ -24,8 +30,18 @@ public class Slower : Tower {
         }
     }
 
+    public override void Upgrade() {
+        if (CanUpgrade()) {
+            speedMultiplicateur *= (float)speedMultiplicateurUpgrade / 100;
+            range *= (float)rangeUpgrade / 100;
+            currentLevel++;
+        }
+    }
 
     public override int GetCost() {
         return cost;
+    }
+    public override int GetUpgradeCost() {
+        return upgradeCost;
     }
 }

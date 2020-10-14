@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8724166572649606654}
   - component: {fileID: 8724166572649606531}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,6 +107,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea84a3052ecae94890b90145a6ef432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  fireRate: 0.2
+  damage: 2
   range: 3
+  maxLevel: 2
+  fireRate: 0.2
+  cost: 20
+  upgradeCost: 10
+  fireRateUpgrade: 90
+  damageUpgrade: 200
+  rangeUpgrade: 100

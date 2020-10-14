@@ -5,6 +5,12 @@ public class FlameThrower : Tower {
     public float impactRange = 0.5f;
     public int cost = 25;
 
+    [Header("Upgrades")]
+    public int upgradeCost = 12;
+    public int impactRangeUpgrade = 100;
+    public int damageUpgrade = 100;
+    public int rangeUpgrade = 100;
+
     private void FixedUpdate() {
         Enemy targetEnemy = GetFirstEnemy();
         if (targetEnemy != null)
@@ -18,7 +24,19 @@ public class FlameThrower : Tower {
             }
     }
 
+    public override void Upgrade() {
+        if (CanUpgrade()) {
+            impactRange *= (float)impactRangeUpgrade / 100;
+            damage *= (float)damageUpgrade / 100;
+            range *= (float)rangeUpgrade / 100;
+            currentLevel++;
+        }
+    }
+
     public override int GetCost() {
         return cost;
+    }
+    public override int GetUpgradeCost() {
+        return upgradeCost;
     }
 }

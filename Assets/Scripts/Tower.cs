@@ -6,6 +6,9 @@ public abstract class Tower : MonoBehaviour
     public float damage = 2.5f;
     public float range = 3f;
 
+    protected int currentLevel = 1;
+    public int maxLevel = 2;
+
     protected GameObject enemies;
 
     protected virtual void Start() {
@@ -32,7 +35,13 @@ public abstract class Tower : MonoBehaviour
         return firstEnemy;
     }
 
+    public abstract void Upgrade();
+    public abstract int GetUpgradeCost();
     public abstract int GetCost();
+
+    public bool CanUpgrade() {
+        return currentLevel < maxLevel;
+    }
 
     void OnDrawGizmos() {
         Gizmos.color = Color.black;

@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [Min(0)]
-    public int amountEnemies = 5;
-    [Min(0)]
     public int totalGold = 0;
     [Min(1)]
     public int baseHP = 20;
@@ -33,9 +31,10 @@ public class GameManager : MonoBehaviour
         healthText = GameObject.Find("HealthValue").GetComponent<Text>();
         healthText.text = baseHP.ToString();
 
-        foreach (Wave w in waves) {
-            Instantiate(w, GameObject.Find("Waves").transform);
-        }
+        //foreach (Wave w in waves) {
+        Wave w = Instantiate(waves[0], GameObject.Find("Waves").transform).GetComponent<Wave>();
+        w.Init(this, 0);
+        //}
     }
 
     public void BaseTakeDamage(int amountDamage) {
@@ -47,22 +46,32 @@ public class GameManager : MonoBehaviour
     }
 
     void Update() {
-        if (choosenTower != null && Input.GetMouseButtonDown(0)) {
-            if (totalGold - choosenTower.GetCost() < 0) {
-                choosenTower = null;
-                return;
-            }
-            //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100)) {
-                if(hit.transform.parent.name == "Board") {
-                    Vector3 towerPos = new Vector3(hit.transform.position.x, towers.transform.position.y, hit.transform.position.z);
-                    Instantiate(choosenTower, towerPos, Quaternion.identity, towers.transform);
-                    UpdateGold(-choosenTower.GetCost());
+                if (choosenTower != null) {
+                    if (hit.transform.parent.name == "Board") {
+                        if (totalGold - choosenTower.GetCost() < 0) {
+                            choosenTower = null;
+                            return;
+                        }
+                        Vector3 towerPos = new Vector3(hit.transform.position.x, hit.transform.position.y + 0.4f, hit.transform.position.z);
+                        Instantiate(choosenTower, towerPos, Quaternion.identity, towers.transform);
+                        UpdateGold(-choosenTower.GetCost());
+                    }
+                    choosenTower = null;
+                }
+                if (hit.transform.parent.name == "Towers") {
+                    Tower tower = hit.transform.gameObject.GetComponent<Tower>();
+                    if (tower != null) {
+                        if (totalGold - tower.GetUpgradeCost() < 0) {
+                            return;
+                        }
+                        tower.Upgrade();
+                    }
                 }
             }
-            choosenTower = null;
         }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             choosenTower = null;
