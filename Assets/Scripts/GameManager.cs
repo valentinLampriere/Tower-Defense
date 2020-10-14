@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
                             choosenTower = null;
                             return;
                         }
-                        Vector3 towerPos = new Vector3(hit.transform.position.x, hit.transform.position.y + 0.4f, hit.transform.position.z);
+                        Vector3 towerPos = new Vector3(hit.transform.position.x, hit.transform.localScale.y / 2 + 0.1f, hit.transform.position.z);
                         Instantiate(choosenTower, towerPos, Quaternion.identity, towers.transform);
                         UpdateGold(-choosenTower.GetCost());
                     }
