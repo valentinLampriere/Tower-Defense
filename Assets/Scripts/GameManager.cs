@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void NextWave() {
+        if (waves.Count == 0) return;
         Wave w = Instantiate(waves[waveIndex], GameObject.Find("Waves").transform).GetComponent<Wave>();
         w.Init(this);
         waveIndex++;
